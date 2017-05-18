@@ -53,41 +53,37 @@ var MyModal = React.createClass({
 
 var RecipeContainer = React.createClass({
 	
-	// getInitialState: function() {
-	// 	return {
-	// 		'recipesDictionary': {
-	// 			'Pizza': ['Oregano', 'Cheese'], 
-	// 			'Chocolate': ['Cocoa', 'Sugar'] 
-	// 		}
-	// 	}	
-	// },
+	// EXPERIMENTAL
 	
-	// addRecipe: function(recipe) {
-	// 	var newRecipesDict = this.state.recipesDictionary;
+	getInitialState: function() {
+		return {
+			'recipesDictionary': {
+				'Pizza': ['Oregano', 'Cheese'], 
+				'Chocolate': ['Cocoa', 'Sugar'] 
+			}
+		}	
+	},
+	
+	addRecipe: function(recipe) {
+		var newRecipesDict = this.state.recipesDictionary;
 		
-	// 	newRecipesDict.push(recipe);
+		newRecipesDict.push(recipe);
 		
-	// 	this.setState({'recipesDictionary': newRecipesDict});
-	// },
+		this.setState({'recipesDictionary': newRecipesDict});
+	},
 	
 	render: function() {
 		
-		// var recipesDict = this.state.recipesDictionary;
+		var recipesDict = this.state.recipesDictionary;
+		var onModalToggle = this.props.onModalToggle;
 		
-		// var recipesArray = Object.keys(recipesDict).map(function(recipe) {
-			
-		// 	return (
-		// 		<div>
-		// 			<RecipeHeader recipeName={recipe} />
-		// 			<RecipeWindow onModalToggle={this.props.onModalToggle} />
-		// 		</div>
-		// 	);
-		// });
+		var recipesArray = Object.keys(recipesDict).map(function(recipe) {
+			return <div><RecipeHeader recipeName={recipe}/><RecipeWindow onModalToggle={onModalToggle} /></div>
+		});
 		
 		return (
 			<div className="mainContainer">
-				<RecipeHeader />
-				<RecipeWindow onModalToggle={this.props.onModalToggle} />
+				{recipesArray}
 			</div>
 		);
 	}
@@ -96,7 +92,7 @@ var RecipeContainer = React.createClass({
 var RecipeHeader = React.createClass({
 	
 	handleUserClick: function() {
-		$("#window").slideToggle(1000);
+		$(".window:first").slideToggle(1000);
 	},
 
 	render: function() {
@@ -112,7 +108,7 @@ var RecipeWindow = React.createClass({
 	
 	render: function() {
 		return (
-			<div id="window">
+			<div class="window" id="window">
 				<div class="window-wrapper">
 					<RecipeIngredientsList
 						ingredients={["Pizza", "Chocolate Cake", "Salad"]}
@@ -154,7 +150,7 @@ var RecipeButton = React.createClass({
 				<Button bsStyle={this.props.btnStyle} > {this.props.title} </Button>
 			);
 		}
-	},
+	}
 	
 	// componentDidMount: function() {
 	// 	alert('Ready');
