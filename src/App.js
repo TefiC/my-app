@@ -156,9 +156,9 @@ var RecipeButton = React.createClass({
 		}
 	},
 	
-	componentDidMount: function() {
-		alert('Ready');
-	}
+	// componentDidMount: function() {
+	// 	alert('Ready');
+	// }
 });
 
 // export default App;
